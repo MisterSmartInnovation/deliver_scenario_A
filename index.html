@@ -41,16 +41,17 @@
       }
 
       body {
-        min-height: 100dvh;
-        overflow: hidden;
+        min-height: 110dvh;
+        overflow-x: hidden;
+        overflow-y: auto;
         font-family: Arial, Helvetica, sans-serif;
-        touch-action: none;
+        touch-action: pan-y;
       }
 
       .screen {
         position: relative;
         width: 100%;
-        min-height: 100dvh;
+        min-height: 110dvh;
         overflow: hidden;
         padding: clamp(1rem, 4vw, 2.5rem);
       }
