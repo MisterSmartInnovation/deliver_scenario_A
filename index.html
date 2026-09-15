@@ -16,6 +16,7 @@
       :root {
         --background: #f0f4f7;
         --blue: #0e2d54;
+        --edge-gap: max(1rem, env(safe-area-inset-left));
       }
 
       * {
@@ -55,12 +56,12 @@
       }
 
       .brand--blue {
-        left: max(1rem, env(safe-area-inset-left));
+        left: var(--edge-gap);
         width: clamp(1.25rem, 5vw, 2.5rem);
       }
 
       .brand--deliver {
-        right: max(1rem, env(safe-area-inset-right));
+        right: var(--edge-gap);
         width: clamp(4rem, 14vw, 7rem);
       }
 
