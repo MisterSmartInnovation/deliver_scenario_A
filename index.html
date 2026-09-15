@@ -92,17 +92,21 @@
 
       .scenario {
         position: absolute;
-        top: 50%;
+        top: clamp(4rem, 15vh, 8rem);
+        right: var(--edge-gap);
         left: var(--edge-gap);
-        width: min(62vw, 50rem);
-        transform: translateY(-50%);
+        bottom: clamp(4rem, 15vh, 8rem);
+        display: flex;
+        width: auto;
+        flex-direction: column;
+        justify-content: center;
       }
 
       .scenario__header {
         display: flex;
         align-items: center;
-        gap: clamp(2rem, 7vw, 6rem);
-        margin-bottom: clamp(1.5rem, 4vh, 3rem);
+        gap: clamp(1.5rem, 5vw, 4rem);
+        margin-bottom: clamp(0.75rem, 3vh, 2rem);
       }
 
       .scenario__label {
@@ -147,18 +151,18 @@
       }
 
       .scenario__title {
-        max-width: 48rem;
+        max-width: min(62vw, 48rem);
         margin: 0;
         color: var(--blue);
-        font: 700 clamp(2rem, 5.4vw, 4.5rem) / 1.08 "Manrope", sans-serif;
+        font: 700 clamp(1.5rem, 6vh, 3.75rem) / 1.08 "Manrope", sans-serif;
         letter-spacing: -0.045em;
       }
 
       .scenario__description {
-        max-width: 35rem;
-        margin: clamp(1rem, 2.5vh, 1.75rem) 0 0;
+        max-width: min(46vw, 35rem);
+        margin: clamp(0.75rem, 2.5vh, 1.75rem) 0 0;
         color: var(--muted);
-        font: 600 clamp(1rem, 2.2vw, 1.6rem) / 1.45 "Open Sans", sans-serif;
+        font: 600 clamp(0.8rem, 2.5vh, 1.35rem) / 1.4 "Open Sans", sans-serif;
       }
 
       .scenario__button {
@@ -167,14 +171,14 @@
         justify-content: center;
         gap: 1rem;
         min-width: clamp(12rem, 29vw, 23rem);
-        min-height: clamp(3.25rem, 10vh, 5.5rem);
-        margin-top: clamp(1.5rem, 5vh, 3.5rem);
+        min-height: clamp(2.5rem, 9vh, 4.5rem);
+        margin-top: clamp(1rem, 4vh, 2.75rem);
         padding: 0 2rem;
         border: 0;
         border-radius: 1.25rem;
         background: var(--button);
         color: var(--button-text);
-        font: 700 clamp(1rem, 2vw, 1.5rem) / 1 "Open Sans", sans-serif;
+        font: 700 clamp(0.85rem, 2.5vh, 1.25rem) / 1 "Open Sans", sans-serif;
         letter-spacing: 0.02em;
         cursor: pointer;
         touch-action: manipulation;
