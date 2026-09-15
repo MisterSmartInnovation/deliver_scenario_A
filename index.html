@@ -1,1 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schermata rossa</title>
+    <style>
+      :root {
+        --red-1: #8a0000;
+        --red-2: #d60000;
+        --white: #f8f8f8;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, var(--red-1), var(--red-2));
+        color: var(--white);
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .screen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .content {
+        border: 2px solid rgba(255,255,255,0.35);
+        background: rgba(0,0,0,0.12);
+        padding: 2rem 3rem;
+        box-shadow: 0 0 30px rgba(0,0,0,0.25);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 4rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0.8rem 0 0;
+        font-size: clamp(0.9rem, 2vw, 1.4rem);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen">
+      <div class="content">
+        <h1>Schermata Rossa</h1>
+        <p>Errore critico</p>
+      </div>
+    </div>
+  </body>
+</html>
