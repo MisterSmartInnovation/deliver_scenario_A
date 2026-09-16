@@ -210,7 +210,6 @@
         width: min(50vw, 40rem);
       }
 
-      .map-frame,
       .video-frame {
         width: 100%;
         max-width: 100%;
@@ -221,7 +220,6 @@
         background: #d9dee2;
       }
 
-      .map-frame img,
       .video-frame video {
         display: block;
         width: 100%;
@@ -249,26 +247,6 @@
         margin-top: clamp(26px, 4vh, 40px);
       }
 
-      .screen-three {
-        display: none;
-      }
-
-      .screen-three.is-visible {
-        display: flex;
-      }
-
-      .screen-three .content {
-        width: 100%;
-        max-width: 72rem;
-        align-items: stretch;
-        gap: clamp(18px, 3vh, 32px);
-        margin: 0 auto;
-      }
-
-      .screen-three .text-block {
-        width: min(100%, 42rem);
-      }
-
       .video-frame {
         position: relative;
         isolation: isolate;
@@ -289,10 +267,6 @@
         height: 100%;
         background: #ffffff;
         transform-origin: left center;
-      }
-
-      .screen-three .next {
-        align-self: flex-end;
       }
 
       .screen-four,
@@ -440,16 +414,6 @@
           width: 100%;
         }
 
-        .screen-three .content {
-          gap: clamp(14px, 4vw, 22px);
-        }
-
-        .screen-three h1,
-        .screen-three .subtitle,
-        .screen-three .text-block {
-          width: 100%;
-        }
-
         .screen-four .content,
         .result-screen .content {
           gap: clamp(14px, 4vw, 22px);
@@ -498,34 +462,7 @@
       </section>
     </main>
 
-    <main id="screen-two" class="screen screen-two" aria-labelledby="map-title" hidden>
-      <section class="content">
-        <div class="text-block">
-          <h1 id="map-title">Traffico ordinario su via Tal dei Tali</h1>
-          <p class="subtitle">
-            Presto verrà aperto un cantiere che prevederà un unico senso di marcia, regolato da semaforo.
-          </p>
-        </div>
-        <div class="map-frame">
-          <img
-            src="assets/traffic-map.png"
-            alt="Mappa del traffico ordinario su via Tal dei Tali"
-          />
-        </div>
-        <nav class="screen-nav" aria-label="Navigazione schermate">
-          <button id="back-to-one" class="next back" type="button">
-            <span class="arrow" aria-hidden="true">arrow_back</span>
-            <span>INDIETRO</span>
-          </button>
-          <button id="show-screen-three" class="next" type="button">
-            <span>AVANTI</span>
-            <span class="arrow" aria-hidden="true">arrow_forward</span>
-          </button>
-        </nav>
-      </section>
-    </main>
-
-    <main id="screen-three" class="screen screen-three" aria-labelledby="video-title" hidden>
+    <main id="screen-two" class="screen screen-two" aria-labelledby="video-title" hidden>
       <section class="content">
         <div class="text-block">
           <h1 id="video-title">Traffico ordinario su via Tal dei Tali</h1>
@@ -553,7 +490,7 @@
           </p>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
-          <button id="back-to-two" class="next back" type="button">
+          <button id="back-to-one" class="next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
           </button>
@@ -592,7 +529,7 @@
           </button>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
-          <button id="back-to-three" class="next back" type="button">
+          <button id="back-to-two" class="next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
           </button>
@@ -649,14 +586,13 @@
     <script>
       const screenOne = document.getElementById("screen-one");
       const screenTwo = document.getElementById("screen-two");
-      const screenThree = document.getElementById("screen-three");
       const screenFour = document.getElementById("screen-four");
       const resultOne = document.getElementById("result-one");
       const resultTwo = document.getElementById("result-two");
       const trafficVideo = document.getElementById("traffic-video");
       const progressBar = document.getElementById("video-progress-bar");
       const videoFallback = document.getElementById("video-fallback");
-      const screens = [screenOne, screenTwo, screenThree, screenFour, resultOne, resultTwo];
+      const screens = [screenOne, screenTwo, screenFour, resultOne, resultTwo];
       const videoBindings = [
         { video: trafficVideo, progress: progressBar, fallback: videoFallback },
         ...Array.from(document.querySelectorAll(".result-screen video")).map((video) => ({
@@ -675,7 +611,7 @@
           screen.classList.toggle("is-visible", isActive);
         });
         allVideos.forEach((video) => {
-          if (video !== trafficVideo || activeScreen !== screenThree) {
+          if (video !== trafficVideo || activeScreen !== screenTwo) {
             video.pause();
           }
         });
@@ -685,10 +621,6 @@
         trafficVideo.play().catch(() => {
           videoFallback.hidden = false;
         });
-      }
-
-      function stopVideo() {
-        trafficVideo.pause();
       }
 
       function startResultVideo(resultScreen) {
@@ -733,15 +665,11 @@
 
       document.getElementById("show-screen-two").addEventListener("click", () => {
         setActiveScreen(screenTwo);
+        startVideo();
       });
 
       document.getElementById("back-to-one").addEventListener("click", () => {
         setActiveScreen(screenOne);
-      });
-
-      document.getElementById("show-screen-three").addEventListener("click", () => {
-        setActiveScreen(screenThree);
-        startVideo();
       });
 
       document.getElementById("show-screen-four").addEventListener("click", () => {
@@ -750,11 +678,6 @@
 
       document.getElementById("back-to-two").addEventListener("click", () => {
         setActiveScreen(screenTwo);
-        stopVideo();
-      });
-
-      document.getElementById("back-to-three").addEventListener("click", () => {
-        setActiveScreen(screenThree);
         startVideo();
       });
 
