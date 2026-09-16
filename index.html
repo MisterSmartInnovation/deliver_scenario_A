@@ -221,6 +221,21 @@
         align-self: flex-end;
       }
 
+      .screen-nav {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .screen-nav .back {
+        margin-top: clamp(26px, 4vh, 40px);
+      }
+
+      .screen-nav .next {
+        margin-top: clamp(26px, 4vh, 40px);
+      }
+
       .screen-three {
         display: none;
       }
@@ -237,10 +252,14 @@
         margin: 0 auto;
       }
 
+      .screen-three .text-block {
+        width: min(100%, 42rem);
+      }
+
       .video-frame {
         position: relative;
         width: 100%;
-        aspect-ratio: 7 / 3;
+        aspect-ratio: 16 / 9;
         overflow: hidden;
         border-radius: 14px;
         background: #d9dee2;
@@ -318,8 +337,10 @@
           gap: clamp(14px, 4vw, 22px);
         }
 
-        .screen-three .next {
-          align-self: flex-end;
+        .screen-three h1,
+        .screen-three .subtitle,
+        .screen-three .text-block {
+          width: 100%;
         }
 
       }
@@ -369,15 +390,27 @@
             alt="Mappa del traffico ordinario su via Tal dei Tali"
           />
         </div>
-        <button id="show-screen-three" class="next" type="button">
-          <span>AVANTI</span>
-          <span class="arrow" aria-hidden="true">arrow_forward</span>
-        </button>
+        <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="back-to-one" class="next back" type="button">
+            <span class="arrow" aria-hidden="true">arrow_back</span>
+            <span>INDIETRO</span>
+          </button>
+          <button id="show-screen-three" class="next" type="button">
+            <span>AVANTI</span>
+            <span class="arrow" aria-hidden="true">arrow_forward</span>
+          </button>
+        </nav>
       </section>
     </main>
 
-    <main id="screen-three" class="screen screen-three" aria-labelledby="video-fallback">
+    <main id="screen-three" class="screen screen-three" aria-labelledby="video-title">
       <section class="content">
+        <div class="text-block">
+          <h1 id="video-title">Traffico ordinario su via Tal dei Tali</h1>
+          <p class="subtitle">
+            Presto verrà aperto un cantiere che prevederà un unico senso di marcia, regolato da semaforo.
+          </p>
+        </div>
         <div class="video-frame">
           <video
             id="traffic-video"
@@ -393,14 +426,20 @@
           <div class="video-progress" aria-hidden="true">
             <span id="video-progress-bar"></span>
           </div>
-          <p id="video-fallback" class="subtitle">
+          <p id="video-fallback" class="subtitle" hidden>
             Il video non è disponibile. Riprova più tardi.
           </p>
         </div>
-        <button class="next" type="button">
-          <span>AVANTI</span>
-          <span class="arrow" aria-hidden="true">arrow_forward</span>
-        </button>
+        <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="back-to-two" class="next back" type="button">
+            <span class="arrow" aria-hidden="true">arrow_back</span>
+            <span>INDIETRO</span>
+          </button>
+          <button class="next" type="button">
+            <span>AVANTI</span>
+            <span class="arrow" aria-hidden="true">arrow_forward</span>
+          </button>
+        </nav>
       </section>
     </main>
 
@@ -418,12 +457,23 @@
         screenTwo.classList.add("is-visible");
       });
 
+      document.getElementById("back-to-one").addEventListener("click", () => {
+        screenTwo.style.display = "none";
+        screenOne.style.display = "flex";
+      });
+
       document.getElementById("show-screen-three").addEventListener("click", () => {
         screenTwo.style.display = "none";
         screenThree.classList.add("is-visible");
         trafficVideo.play().catch(() => {
           videoFallback.hidden = false;
         });
+      });
+
+      document.getElementById("back-to-two").addEventListener("click", () => {
+        screenThree.style.display = "none";
+        screenTwo.classList.add("is-visible");
+        trafficVideo.pause();
       });
 
       trafficVideo.addEventListener("loadedmetadata", () => {
