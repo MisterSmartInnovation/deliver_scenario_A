@@ -42,7 +42,7 @@
         display: flex;
         min-height: 100vh;
         flex-direction: column;
-        padding: clamp(22px, 5vh, 42px) clamp(28px, 6vw, 92px)
+        padding: clamp(16px, 3vh, 28px) clamp(18px, 3vw, 44px)
           clamp(24px, 5vh, 44px);
         isolation: isolate;
       }
@@ -61,19 +61,19 @@
 
       .topbar {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
       }
 
       .logo-mister {
-        width: clamp(136px, 18vw, 216px);
-        height: clamp(38px, 5vw, 58px);
+        width: clamp(100px, 12vw, 150px);
+        height: clamp(30px, 4vw, 42px);
         object-fit: contain;
       }
 
       .logo-deliver {
-        width: clamp(136px, 18vw, 216px);
-        height: clamp(38px, 5vw, 58px);
+        width: clamp(100px, 12vw, 150px);
+        height: clamp(30px, 4vw, 42px);
         object-fit: contain;
       }
 
@@ -92,7 +92,7 @@
         align-items: center;
         gap: 14px;
         margin-bottom: clamp(18px, 3vh, 30px);
-        color: #be554b;
+        color: #ed6a5e;
         font-family: "Open Sans", Arial, Helvetica, sans-serif;
         font-size: clamp(11px, 1.25vw, 14px);
         font-weight: 700;
@@ -107,12 +107,13 @@
       .dot {
         width: 8px;
         height: 8px;
-        border: 1px solid #be554b;
+        border: 1px solid #9fabbb;
         border-radius: 50%;
       }
 
       .dot.active {
-        background: #be554b;
+        border-color: #0e2d54;
+        background: #0e2d54;
       }
 
       h1 {
