@@ -293,6 +293,10 @@
         align-self: flex-end;
       }
 
+      .screen[hidden] {
+        display: none !important;
+      }
+
       @media (max-width: 560px) {
         body {
           overflow-y: auto;
@@ -376,7 +380,7 @@
       </section>
     </main>
 
-    <main id="screen-two" class="screen screen-two" aria-labelledby="map-title">
+    <main id="screen-two" class="screen screen-two" aria-labelledby="map-title" hidden>
       <section class="content">
         <div class="text-block">
           <h1 id="map-title">Traffico ordinario su via Tal dei Tali</h1>
@@ -403,7 +407,7 @@
       </section>
     </main>
 
-    <main id="screen-three" class="screen screen-three" aria-labelledby="video-title">
+    <main id="screen-three" class="screen screen-three" aria-labelledby="video-title" hidden>
       <section class="content">
         <div class="text-block">
           <h1 id="video-title">Traffico ordinario su via Tal dei Tali</h1>
@@ -450,30 +454,45 @@
       const trafficVideo = document.getElementById("traffic-video");
       const progressBar = document.getElementById("video-progress-bar");
       const videoFallback = document.getElementById("video-fallback");
+      const screens = [screenOne, screenTwo, screenThree];
       let previousTime = 0;
 
-      document.getElementById("show-screen-two").addEventListener("click", () => {
-        screenOne.style.display = "none";
-        screenTwo.classList.add("is-visible");
-      });
+      function setActiveScreen(activeScreen) {
+        screens.forEach((screen) => {
+          const isActive = screen === activeScreen;
+          screen.hidden = !isActive;
+          screen.classList.toggle("is-visible", isActive);
+        });
+      }
 
-      document.getElementById("back-to-one").addEventListener("click", () => {
-        screenTwo.style.display = "none";
-        screenOne.style.display = "flex";
-      });
-
-      document.getElementById("show-screen-three").addEventListener("click", () => {
-        screenTwo.style.display = "none";
-        screenThree.classList.add("is-visible");
+      function startVideo() {
         trafficVideo.play().catch(() => {
           videoFallback.hidden = false;
         });
+      }
+
+      function stopVideo() {
+        trafficVideo.pause();
+      }
+
+      setActiveScreen(screenOne);
+
+      document.getElementById("show-screen-two").addEventListener("click", () => {
+        setActiveScreen(screenTwo);
+      });
+
+      document.getElementById("back-to-one").addEventListener("click", () => {
+        setActiveScreen(screenOne);
+      });
+
+      document.getElementById("show-screen-three").addEventListener("click", () => {
+        setActiveScreen(screenThree);
+        startVideo();
       });
 
       document.getElementById("back-to-two").addEventListener("click", () => {
-        screenThree.style.display = "none";
-        screenTwo.classList.add("is-visible");
-        trafficVideo.pause();
+        setActiveScreen(screenTwo);
+        stopVideo();
       });
 
       trafficVideo.addEventListener("loadedmetadata", () => {
