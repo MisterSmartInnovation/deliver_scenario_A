@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
     />
     <title>DeLIVER | Scenario</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,6 +29,7 @@
 
       html,
       body {
+        width: 100%;
         min-height: 100%;
         margin: 0;
       }
@@ -91,7 +92,7 @@
 
       .content {
         display: flex;
-        width: min(100%, 40rem);
+        width: 100%;
         max-width: 100%;
         min-width: 0;
         flex: 1;
@@ -102,7 +103,7 @@
       }
 
       .text-block {
-        width: min(50vw, 40rem);
+        width: min(50%, 40rem);
         max-width: 100%;
         min-width: 0;
       }
@@ -189,7 +190,7 @@
         }
 
         .text-block {
-          width: min(50vw, 100%);
+          width: min(50%, 40rem);
         }
 
         .scenario {
