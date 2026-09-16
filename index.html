@@ -3,7 +3,10 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <title>DeLIVER | Scenario</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -98,6 +101,12 @@
         margin: -2vh auto 0;
       }
 
+      .text-block {
+        width: min(50vw, 40rem);
+        max-width: 100%;
+        min-width: 0;
+      }
+
       .scenario {
         display: flex;
         align-items: center;
@@ -140,7 +149,7 @@
 
       .subtitle {
         width: 100%;
-        max-width: 32rem;
+        max-width: 100%;
         margin: clamp(14px, 2.3vh, 22px) 0 0;
         color: var(--muted);
         font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -179,6 +188,10 @@
           margin-top: 2vh;
         }
 
+        .text-block {
+          width: min(50vw, 100%);
+        }
+
         .scenario {
           flex-wrap: wrap;
           gap: 10px;
@@ -203,10 +216,12 @@
             <span class="dot"></span>
           </span>
         </div>
-        <h1 id="scenario-title">Vediamo com'è il traffico in questa zona</h1>
-        <p class="subtitle">
-          Osserva la situazione di partenza prima di prendere la tua decisione
-        </p>
+        <div class="text-block">
+          <h1 id="scenario-title">Vediamo com'è il traffico in questa zona</h1>
+          <p class="subtitle">
+            Osserva la situazione di partenza prima di prendere la tua decisione
+          </p>
+        </div>
         <button class="next" type="button">AVANTI</button>
       </section>
     </main>
