@@ -16,6 +16,7 @@
         --blue: #086bb1;
         --ink: #0e2d54;
         --muted: #3e5776;
+        --dot: #3989c1;
         --surface: #f7faff;
       }
 
@@ -31,6 +32,7 @@
 
       body {
         min-height: 100vh;
+        overflow-x: hidden;
         overflow: hidden;
         background: var(--surface);
         color: var(--ink);
@@ -40,6 +42,8 @@
       .screen {
         position: relative;
         display: flex;
+        width: 100%;
+        max-width: 100%;
         min-height: 100vh;
         flex-direction: column;
         padding: clamp(16px, 3vh, 28px) clamp(18px, 3vw, 44px)
@@ -61,25 +65,32 @@
 
       .topbar {
         display: flex;
+        width: 100%;
+        min-width: 0;
         align-items: center;
+        gap: clamp(16px, 4vw, 56px);
         justify-content: space-between;
       }
 
       .logo-mister {
-        width: clamp(100px, 12vw, 150px);
+        width: clamp(92px, 12vw, 150px);
         height: clamp(30px, 4vw, 42px);
+        min-width: 0;
         object-fit: contain;
       }
 
       .logo-deliver {
-        width: clamp(100px, 12vw, 150px);
+        width: clamp(92px, 12vw, 150px);
         height: clamp(30px, 4vw, 42px);
+        min-width: 0;
         object-fit: contain;
       }
 
       .content {
         display: flex;
-        width: min(100%, 640px);
+        width: min(100%, 40rem);
+        max-width: 100%;
+        min-width: 0;
         flex: 1;
         flex-direction: column;
         justify-content: center;
@@ -107,17 +118,17 @@
       .dot {
         width: 8px;
         height: 8px;
-        border: 1px solid #9fabbb;
+        border: 1px solid var(--dot);
         border-radius: 50%;
       }
 
       .dot.active {
-        border-color: #0e2d54;
-        background: #0e2d54;
+        border-color: var(--blue);
+        background: var(--blue);
       }
 
       h1 {
-        max-width: 620px;
+        max-width: 100%;
         margin: 0;
         color: var(--ink);
         font-family: Manrope, Arial, Helvetica, sans-serif;
@@ -128,7 +139,8 @@
       }
 
       .subtitle {
-        max-width: 510px;
+        width: 100%;
+        max-width: 32rem;
         margin: clamp(14px, 2.3vh, 22px) 0 0;
         color: var(--muted);
         font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -160,12 +172,16 @@
 
         .screen {
           min-height: 100svh;
-          padding-right: 24px;
-          padding-left: 24px;
+          padding: clamp(16px, 4vw, 24px);
         }
 
         .content {
           margin-top: 2vh;
+        }
+
+        .scenario {
+          flex-wrap: wrap;
+          gap: 10px;
         }
       }
     </style>
