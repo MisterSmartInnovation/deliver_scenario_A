@@ -20,7 +20,7 @@
         --ink: #0e2d54;
         --muted: #3e5776;
         --dot: #3989c1;
-        --surface: #f7faff;
+        --surface: #f0f4f7;
       }
 
       * {
@@ -54,18 +54,6 @@
         padding: clamp(16px, 3vh, 28px) clamp(18px, 3vw, 44px)
           clamp(24px, 5vh, 44px);
         isolation: isolate;
-      }
-
-      .screen::before {
-        position: absolute;
-        z-index: -1;
-        top: -34vh;
-        right: -9vw;
-        width: 46vw;
-        height: 70vh;
-        border-radius: 50%;
-        background: #edf5ff;
-        content: "";
       }
 
       .topbar {
