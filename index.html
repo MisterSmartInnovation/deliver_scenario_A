@@ -140,6 +140,7 @@
       }
 
       h1 {
+        width: min(50vw, 40rem);
         max-width: 100%;
         margin: 0;
         color: var(--ink);
@@ -151,7 +152,7 @@
       }
 
       .subtitle {
-        width: 100%;
+        width: min(50vw, 40rem);
         max-width: 100%;
         margin: clamp(14px, 2.3vh, 22px) 0 0;
         color: var(--muted);
@@ -191,6 +192,11 @@
         }
 
         .text-block {
+          width: min(50vw, calc(100% - 1px));
+        }
+
+        h1,
+        .subtitle {
           width: min(50vw, calc(100% - 1px));
         }
 
