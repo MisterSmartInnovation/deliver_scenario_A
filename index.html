@@ -199,7 +199,15 @@
       }
 
       .screen-two .text-block {
-        width: min(100%, 42rem);
+        width: min(50vw, 40rem);
+      }
+
+      .screen-one .text-block,
+      .screen-one h1,
+      .screen-one .subtitle,
+      .screen-two h1,
+      .screen-two .subtitle {
+        width: min(50vw, 40rem);
       }
 
       .map-frame,
@@ -400,7 +408,7 @@
         }
 
         .text-block {
-          width: min(50vw, calc(100% - 1px));
+          width: min(100%, calc(100% - 1px));
         }
 
         .scenario {
@@ -410,7 +418,13 @@
 
         h1,
         .subtitle {
-          width: min(50vw, calc(100% - 1px));
+          width: min(100%, calc(100% - 1px));
+        }
+
+        .screen-one .text-block,
+        .screen-one h1,
+        .screen-one .subtitle {
+          width: 100%;
         }
 
         .screen-two .content {
