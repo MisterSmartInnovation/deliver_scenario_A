@@ -352,16 +352,9 @@
         opacity: 0.45;
       }
 
-      .result-screen .text-block {
-        display: none;
-      }
-
-      .result-screen .video-frame {
-        align-self: center;
-      }
-
       .result-screen .screen-nav {
         margin-top: auto;
+        justify-content: flex-end;
       }
 
       .screen[hidden] {
@@ -542,42 +535,42 @@
     </main>
 
     <main id="result-one" class="screen result-screen" aria-label="Risultato prima opzione" hidden>
+      <header class="topbar">
+        <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
+        <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
+      </header>
       <section class="content">
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/traffic-scenario.mp4" type="video/mp4" />
-          </video>
-          <div class="video-progress" aria-hidden="true"><span></span></div>
+        <div class="text-block">
+          <h1>Risposta 1</h1>
+          <p class="subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
           <button class="back-to-question next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
-          </button>
-          <button class="next" type="button">
-            <span>AVANTI</span>
-            <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
         </nav>
       </section>
     </main>
 
     <main id="result-two" class="screen result-screen" aria-label="Risultato seconda opzione" hidden>
+      <header class="topbar">
+        <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
+        <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
+      </header>
       <section class="content">
-        <div class="video-frame">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="assets/traffic-scenario.mp4" type="video/mp4" />
-          </video>
-          <div class="video-progress" aria-hidden="true"><span></span></div>
+        <div class="text-block">
+          <h1>Risposta 2</h1>
+          <p class="subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
           <button class="back-to-question next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
-          </button>
-          <button class="next" type="button">
-            <span>AVANTI</span>
-            <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
         </nav>
       </section>
@@ -593,15 +586,8 @@
       const progressBar = document.getElementById("video-progress-bar");
       const videoFallback = document.getElementById("video-fallback");
       const screens = [screenOne, screenTwo, screenFour, resultOne, resultTwo];
-      const videoBindings = [
-        { video: trafficVideo, progress: progressBar, fallback: videoFallback },
-        ...Array.from(document.querySelectorAll(".result-screen video")).map((video) => ({
-          video,
-          progress: video.closest(".video-frame").querySelector(".video-progress span"),
-          fallback: null,
-        })),
-      ];
-      const allVideos = videoBindings.map(({ video }) => video);
+      const videoBindings = [{ video: trafficVideo, progress: progressBar, fallback: videoFallback }];
+      const allVideos = [trafficVideo];
       let selectedAnswer = null;
 
       function setActiveScreen(activeScreen) {
@@ -621,14 +607,6 @@
         trafficVideo.play().catch(() => {
           videoFallback.hidden = false;
         });
-      }
-
-      function startResultVideo(resultScreen) {
-        const video = resultScreen.querySelector("video");
-        video.pause();
-        video.currentTime = 0;
-        video.closest(".video-frame").querySelector(".video-progress span").style.width = "0";
-        video.play().catch(() => {});
       }
 
       function bindVideo({ video, progress, fallback }) {
@@ -695,7 +673,6 @@
         if (!selectedAnswer) return;
         const resultScreen = selectedAnswer === "one" ? resultOne : resultTwo;
         setActiveScreen(resultScreen);
-        startResultVideo(resultScreen);
       });
 
       document.querySelectorAll(".back-to-question").forEach((button) => {
