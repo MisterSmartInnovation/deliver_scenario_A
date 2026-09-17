@@ -373,10 +373,6 @@
         justify-content: flex-start;
       }
 
-      .result-info-screen .content {
-        margin: -2vh auto 0;
-      }
-
       .screen[hidden] {
         display: none !important;
       }
@@ -575,14 +571,23 @@
       </section>
     </main>
 
-    <main id="result-one-info" class="screen result-screen result-info-screen" aria-label="Risposta 1" hidden>
+    <main id="result-one-info" class="screen result-screen result-info-screen" aria-labelledby="result-one-title" hidden>
       <header class="topbar">
         <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
         <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
       </header>
       <section class="content">
+        <div class="scenario" aria-hidden="true">
+          <span>SCENARIO 1/4</span>
+          <span class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </span>
+        </div>
         <div class="text-block">
-          <h1>Risposta 1</h1>
+          <h1 id="result-one-title">Risposta 1</h1>
           <p class="subtitle">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
@@ -617,14 +622,23 @@
       </section>
     </main>
 
-    <main id="result-two-info" class="screen result-screen result-info-screen" aria-label="Risposta 2" hidden>
+    <main id="result-two-info" class="screen result-screen result-info-screen" aria-labelledby="result-two-title" hidden>
       <header class="topbar">
         <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
         <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
       </header>
       <section class="content">
+        <div class="scenario" aria-hidden="true">
+          <span>SCENARIO 1/4</span>
+          <span class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </span>
+        </div>
         <div class="text-block">
-          <h1>Risposta 2</h1>
+          <h1 id="result-two-title">Risposta 2</h1>
           <p class="subtitle">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
