@@ -373,6 +373,10 @@
         justify-content: flex-start;
       }
 
+      .result-info-screen .content {
+        margin-top: clamp(18px, 3vh, 30px);
+      }
+
       .screen[hidden] {
         display: none !important;
       }
@@ -559,6 +563,10 @@
           <div class="video-progress" aria-hidden="true"><span></span></div>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="back-to-question-one" class="next back" type="button">
+            <span class="arrow" aria-hidden="true">arrow_back</span>
+            <span>INDIETRO</span>
+          </button>
           <button id="show-result-one-info" class="next" type="button">
             <span>AVANTI</span>
             <span class="arrow" aria-hidden="true">arrow_forward</span>
@@ -597,6 +605,10 @@
           <div class="video-progress" aria-hidden="true"><span></span></div>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="back-to-question-two" class="next back" type="button">
+            <span class="arrow" aria-hidden="true">arrow_back</span>
+            <span>INDIETRO</span>
+          </button>
           <button id="show-result-two-info" class="next" type="button">
             <span>AVANTI</span>
             <span class="arrow" aria-hidden="true">arrow_forward</span>
@@ -755,8 +767,16 @@
         setActiveScreen(resultOneInfo);
       });
 
+      document.getElementById("back-to-question-one").addEventListener("click", () => {
+        setActiveScreen(screenFour);
+      });
+
       document.getElementById("show-result-two-info").addEventListener("click", () => {
         setActiveScreen(resultTwoInfo);
+      });
+
+      document.getElementById("back-to-question-two").addEventListener("click", () => {
+        setActiveScreen(screenFour);
       });
 
       document.getElementById("back-to-result-one-video").addEventListener("click", () => {
