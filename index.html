@@ -354,7 +354,7 @@
 
       .result-screen .screen-nav {
         margin-top: auto;
-        justify-content: flex-end;
+        justify-content: space-between;
       }
 
       .screen[hidden] {
@@ -546,10 +546,20 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
+        <div class="video-frame">
+          <video id="answer-video-one" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/answer-one.mp4" type="video/mp4" />
+          </video>
+          <div class="video-progress" aria-hidden="true"><span></span></div>
+        </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
           <button class="back-to-question next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
+          </button>
+          <button class="next" type="button">
+            <span>AVANTI</span>
+            <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
         </nav>
       </section>
@@ -567,10 +577,20 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
+        <div class="video-frame">
+          <video id="answer-video-two" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/answer-two.mp4" type="video/mp4" />
+          </video>
+          <div class="video-progress" aria-hidden="true"><span></span></div>
+        </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
           <button class="back-to-question next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
+          </button>
+          <button class="next" type="button">
+            <span>AVANTI</span>
+            <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
         </nav>
       </section>
@@ -586,8 +606,15 @@
       const progressBar = document.getElementById("video-progress-bar");
       const videoFallback = document.getElementById("video-fallback");
       const screens = [screenOne, screenTwo, screenFour, resultOne, resultTwo];
-      const videoBindings = [{ video: trafficVideo, progress: progressBar, fallback: videoFallback }];
-      const allVideos = [trafficVideo];
+      const videoBindings = [
+        { video: trafficVideo, progress: progressBar, fallback: videoFallback },
+        ...Array.from(document.querySelectorAll(".result-screen video")).map((video) => ({
+          video,
+          progress: video.closest(".video-frame").querySelector(".video-progress span"),
+          fallback: null,
+        })),
+      ];
+      const allVideos = videoBindings.map(({ video }) => video);
       let selectedAnswer = null;
 
       function setActiveScreen(activeScreen) {
@@ -607,6 +634,14 @@
         trafficVideo.play().catch(() => {
           videoFallback.hidden = false;
         });
+      }
+
+      function startResultVideo(resultScreen) {
+        const video = resultScreen.querySelector("video");
+        video.pause();
+        video.currentTime = 0;
+        video.closest(".video-frame").querySelector(".video-progress span").style.width = "0";
+        video.play().catch(() => {});
       }
 
       function bindVideo({ video, progress, fallback }) {
@@ -673,6 +708,7 @@
         if (!selectedAnswer) return;
         const resultScreen = selectedAnswer === "one" ? resultOne : resultTwo;
         setActiveScreen(resultScreen);
+        startResultVideo(resultScreen);
       });
 
       document.querySelectorAll(".back-to-question").forEach((button) => {
