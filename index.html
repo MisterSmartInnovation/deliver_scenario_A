@@ -357,6 +357,22 @@
         justify-content: space-between;
       }
 
+      .result-video-screen .content {
+        align-items: stretch;
+      }
+
+      .result-video-screen .video-frame {
+        margin-top: auto;
+      }
+
+      .result-video-screen .screen-nav {
+        justify-content: flex-end;
+      }
+
+      .result-info-screen .screen-nav {
+        justify-content: flex-start;
+      }
+
       .screen[hidden] {
         display: none !important;
       }
@@ -534,7 +550,24 @@
       </section>
     </main>
 
-    <main id="result-one" class="screen result-screen" aria-label="Risultato prima opzione" hidden>
+    <main id="result-one-video" class="screen result-screen result-video-screen" aria-label="Video risposta 1" hidden>
+      <section class="content">
+        <div class="video-frame">
+          <video id="answer-video-one" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/answer-one.mp4" type="video/mp4" />
+          </video>
+          <div class="video-progress" aria-hidden="true"><span></span></div>
+        </div>
+        <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="show-result-one-info" class="next" type="button">
+            <span>AVANTI</span>
+            <span class="arrow" aria-hidden="true">arrow_forward</span>
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <main id="result-one-info" class="screen result-screen result-info-screen" aria-label="Risposta 1" hidden>
       <header class="topbar">
         <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
         <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
@@ -546,18 +579,25 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
+        <nav class="screen-nav" aria-label="Navigazione schermate">
+          <button id="back-to-result-one-video" class="next back" type="button">
+            <span class="arrow" aria-hidden="true">arrow_back</span>
+            <span>INDIETRO</span>
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <main id="result-two-video" class="screen result-screen result-video-screen" aria-label="Video risposta 2" hidden>
+      <section class="content">
         <div class="video-frame">
-          <video id="answer-video-one" autoplay loop muted playsinline preload="metadata">
-            <source src="assets/answer-one.mp4" type="video/mp4" />
+          <video id="answer-video-two" autoplay loop muted playsinline preload="metadata">
+            <source src="assets/answer-two.mp4" type="video/mp4" />
           </video>
           <div class="video-progress" aria-hidden="true"><span></span></div>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
-          <button class="back-to-question next back" type="button">
-            <span class="arrow" aria-hidden="true">arrow_back</span>
-            <span>INDIETRO</span>
-          </button>
-          <button class="next" type="button">
+          <button id="show-result-two-info" class="next" type="button">
             <span>AVANTI</span>
             <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
@@ -565,7 +605,7 @@
       </section>
     </main>
 
-    <main id="result-two" class="screen result-screen" aria-label="Risultato seconda opzione" hidden>
+    <main id="result-two-info" class="screen result-screen result-info-screen" aria-label="Risposta 2" hidden>
       <header class="topbar">
         <img class="logo-mister" src="assets/Logo Mister_C.png" alt="Mister" />
         <img class="logo-deliver" src="assets/deliver-logo.png" alt="DeLIVER" />
@@ -577,20 +617,10 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <div class="video-frame">
-          <video id="answer-video-two" autoplay loop muted playsinline preload="metadata">
-            <source src="assets/answer-two.mp4" type="video/mp4" />
-          </video>
-          <div class="video-progress" aria-hidden="true"><span></span></div>
-        </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
-          <button class="back-to-question next back" type="button">
+          <button id="back-to-result-two-video" class="next back" type="button">
             <span class="arrow" aria-hidden="true">arrow_back</span>
             <span>INDIETRO</span>
-          </button>
-          <button class="next" type="button">
-            <span>AVANTI</span>
-            <span class="arrow" aria-hidden="true">arrow_forward</span>
           </button>
         </nav>
       </section>
@@ -600,12 +630,22 @@
       const screenOne = document.getElementById("screen-one");
       const screenTwo = document.getElementById("screen-two");
       const screenFour = document.getElementById("screen-four");
-      const resultOne = document.getElementById("result-one");
-      const resultTwo = document.getElementById("result-two");
+      const resultOneVideo = document.getElementById("result-one-video");
+      const resultOneInfo = document.getElementById("result-one-info");
+      const resultTwoVideo = document.getElementById("result-two-video");
+      const resultTwoInfo = document.getElementById("result-two-info");
       const trafficVideo = document.getElementById("traffic-video");
       const progressBar = document.getElementById("video-progress-bar");
       const videoFallback = document.getElementById("video-fallback");
-      const screens = [screenOne, screenTwo, screenFour, resultOne, resultTwo];
+      const screens = [
+        screenOne,
+        screenTwo,
+        screenFour,
+        resultOneVideo,
+        resultOneInfo,
+        resultTwoVideo,
+        resultTwoInfo,
+      ];
       const videoBindings = [
         { video: trafficVideo, progress: progressBar, fallback: videoFallback },
         ...Array.from(document.querySelectorAll(".result-screen video")).map((video) => ({
@@ -706,15 +746,27 @@
 
       document.getElementById("show-result").addEventListener("click", () => {
         if (!selectedAnswer) return;
-        const resultScreen = selectedAnswer === "one" ? resultOne : resultTwo;
+        const resultScreen = selectedAnswer === "one" ? resultOneVideo : resultTwoVideo;
         setActiveScreen(resultScreen);
         startResultVideo(resultScreen);
       });
 
-      document.querySelectorAll(".back-to-question").forEach((button) => {
-        button.addEventListener("click", () => {
-          setActiveScreen(screenFour);
-        });
+      document.getElementById("show-result-one-info").addEventListener("click", () => {
+        setActiveScreen(resultOneInfo);
+      });
+
+      document.getElementById("show-result-two-info").addEventListener("click", () => {
+        setActiveScreen(resultTwoInfo);
+      });
+
+      document.getElementById("back-to-result-one-video").addEventListener("click", () => {
+        setActiveScreen(resultOneVideo);
+        startResultVideo(resultOneVideo);
+      });
+
+      document.getElementById("back-to-result-two-video").addEventListener("click", () => {
+        setActiveScreen(resultTwoVideo);
+        startResultVideo(resultTwoVideo);
       });
 
     </script>
