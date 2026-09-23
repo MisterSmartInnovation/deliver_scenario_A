@@ -395,6 +395,22 @@
         justify-content: flex-start;
       }
 
+
+      .qr-prompt {
+        display: inline-block;
+        width: fit-content;
+        max-width: 100%;
+        margin-top: clamp(14px, 2.3vh, 22px);
+        padding: 10px 14px;
+        border: 1px solid #c4d3e2;
+        border-radius: 8px;
+        background: #F0F4F7;
+        color: var(--ink);
+        font-family: "Open Sans", Arial, Helvetica, sans-serif;
+        font-size: clamp(13px, 1.3vw, 16px);
+        line-height: 1.35;
+      }
+
       .screen[hidden] {
         display: none !important;
       }
@@ -481,7 +497,7 @@
           </span>
         </div>
         <div class="text-block">
-          <h1 id="scenario-title">Situazione iniziale SCENARIO A</h1>
+          <h1 id="scenario-title">Situazione iniziale<br />SCENARIO A</h1>
           <p class="subtitle">
             Osserva la situazione di partenza prima di prendere la tua decisione.
           </p>
@@ -496,7 +512,7 @@
     <main id="screen-two" class="screen screen-two" aria-labelledby="video-title" hidden>
       <section class="content">
         <div class="text-block">
-          <h1 id="video-title">Situazione ipotetica SCENARIO A</h1>
+          <h1 id="video-title">Situazione ipotetica<br />SCENARIO A</h1>
           <p class="subtitle">
             Lungo la strada che percorri abitualmente hanno aperto un cantiere. Per gestire il traffico, è stato deciso di mettere un semaforo per alternare il passaggio delle auto nelle due direzioni. 
           </p>
@@ -615,6 +631,7 @@
           <p class="subtitle">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
+          <div class="qr-prompt">apri la fotocamera e inquadra il prossimo QR code</div>
         </div>
         <nav class="screen-nav" aria-label="Navigazione schermate">
           <button id="back-to-result-one-video" class="next back" type="button">
