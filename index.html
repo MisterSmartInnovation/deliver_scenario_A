@@ -438,30 +438,41 @@
   padding: 0 10px;
 }
 
+/* BARRA DI AVANZAMENTO */
+.progress-steps {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 30px;
+    padding: 0 10px;
+}
+
 .progress-step {
-  position: relative;
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #FBE1DF;
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #F0F4F7;
+    border: 2px solid #ED6A5E;
 }
 
-/* Linea tra un pallino e l'altro */
 .progress-line {
-  height: 3px;
-  flex: 1;
-  background: #FBE1DF;
+    height: 3px;
+    flex: 1;
+    background: transparent;
+    border-top: 2px solid #ED6A5E;
 }
 
-/* Pallino completato o corrente */
 .progress-step.active {
-  background: #ED6A5E;
+    background: #ED6A5E;
+    border-color: #ED6A5E;
 }
 
-/* Linea già percorsa */
 .progress-line.active {
-  background: #ED6A5E;
+    background: #ED6A5E;
+    border-top-color: #ED6A5E;
 }
       
       @media (max-width: 560px) {
